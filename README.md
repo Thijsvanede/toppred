@@ -33,11 +33,81 @@ Finally, install the library from source:
 pip3 install -e /path/to/toppred/
 ```
 
-## Usage
-TODO
+## Documentation
+The main usage of this library is to compute metrics over the top-n predictions of a given classifier. In the normal case, a classifier gives a single prediction per sample, often in the form of an array:
 
-### Examples
-For all directly executed examples see the `examples/` directory.
+```python
+import numpy as np
+
+y_true = np.asarray([0, 1, 2, 1, 0]) # True labels
+y_pred = np.asarray([0, 1, 1, 0, 0]) # Predicted labels
+```
+
+However, a classifier could also return the top n most likely predictions, e.g.:
+
+```python
+import numpy as np
+
+y_true = np.asarray([0, 1, 2, 1, 0]) # True labels
+y_pred = np.asarray([                # Predicted labels
+    [0, 1, 2],
+    [1, 0, 2],
+    [1, 2, 0],
+    [0, 1, 2],
+    [0, 1, 2],
+])
+```
+
+In this case, we would like to be able to compute the performance when:
+ 1. The correct prediction is the most likely prediction (`y_pred[:, 0]`)
+ 2. The correct prediction is in the top `2` most likely predictions (`y_pred[:, :2]`)
+ 3. The correct prediction is in the top `3` most likely predictions (`y_pred[:, :3]`)
+ 4. The correct prediction is in the top `n` most likely predictions (`y_pred[:, :n]`)
+
+For this purpose, this library provides two functions:
+ * [top_classification_report()](#top_classification_report), produces a classification report similar to [sklearn.metrics.classification_report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
+ * [top_predictions()](#top_predictions), provides an iterator over the top n most likely predictions and can be combined with many `sklearn.metrics`. See [examples](#Metrics).
+
+### Probabilities
+Some classifiers, including many neural networks do not give direct top n results, but instead provide a probability (confidence level) for each class, producing an output such as:
+
+```python
+import numpy as np
+
+y_true = np.asarray([0, 1, 2, 1, 0]) # True labels
+y_prob = np.asarray([ # Prediction probability
+    [0.7, 0.2, 0.1],  # class 0 -> 0.7, class 1 -> 0.2, class 2 -> 0.1
+    [0.2, 0.7, 0.1],  # etc.
+    [0.1, 0.7, 0.2],
+    [0.8, 0.1, 0.1],
+    [0.7, 0.2, 0.1],
+])
+```
+
+In those cases, we can obtain a prediction for the top n most likely values:
+
+```python
+# Get top n most likely values
+n = 3
+
+# Example: y_prob is numpy array
+y_pred = np.argsort(y_prob, axis=1)[:, -n:]
+
+# Example: y_prob is pytorch Tensor
+y_pred = torch.topk(y_prob, n).indices.cpu().numpy()
+```
+
+This results in the prediction array:
+```
+array([[0, 1, 2],
+       [1, 0, 2],
+       [1, 2, 0],
+       [0, 1, 2],
+       [0, 1, 2]])
+```
+
+### Usage examples
+For all directly executable examples see the `examples/` directory.
 
 #### Top classification report
 ```python
