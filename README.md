@@ -65,8 +65,8 @@ In this case, we would like to be able to compute the performance when:
  4. The correct prediction is in the top `n` most likely predictions (`y_pred[:, :n]`)
 
 For this purpose, this library provides two functions:
- * [top_classification_report()](#top_classification_report), produces a classification report similar to [sklearn.metrics.classification_report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
- * [top_predictions()](#top_predictions), provides an iterator over the top n most likely predictions and can be combined with many `sklearn.metrics`. See [examples](#Metrics).
+ * [top_classification_report()](#top_classification_report), produces a classification report similar to [sklearn.metrics.classification_report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html) See [usage example](#top-classification-report).
+ * [top_predictions()](#top_predictions), provides an iterator over the top n most likely predictions and can be combined with many `sklearn.metrics`. See [usage example](#Metrics).
 
 ### Probabilities
 Some classifiers, including many neural networks do not give direct top n results, but instead provide a probability (confidence level) for each class, producing an output such as:
