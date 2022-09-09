@@ -95,38 +95,3 @@ def top_classification_report(
     # Otherwise return reports as string
     else:
         return reports2string(reports, digits)
-
-
-
-if __name__ == "__main__":
-    import numpy as np
-    y_true = np.asarray([1, 2, 3, 4, 5, 4, 3, 2, 1])
-    y_pred = np.asarray([
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3],
-    ])
-
-    print(classification_report(
-        y_true = y_true,
-        y_pred = y_pred[:, 0],
-        labels = [0, 1, 2, 3, 4, 5],
-        target_names = ['None', 'one', 'two', 'three', 'four', 'five'],
-        digits = 4,
-        zero_division = 0,
-    ))
-
-    print(top_classification_report(
-        y_true = y_true,
-        y_pred = y_pred,
-        labels = [0, 1, 2, 3, 4, 5],
-        target_names = ['None', 'one', 'two', 'three', 'four', 'five'],
-        digits = 4,
-        zero_division = 0,
-    ))
