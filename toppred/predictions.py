@@ -1,19 +1,19 @@
 from typing import Iterable
 import numpy as np
-from toppred.types import array_like
+from toppred.types import array_like_1d, array_like_2d
 
 def top_predictions(
-        y_true: array_like,
-        y_pred: array_like,
+        y_true: array_like_1d,
+        y_pred: array_like_2d,
     ) -> Iterable[np.ndarray]:
     """Iterates over the top predictions.
 
         Parameters
         ----------
-        y_true : array_like of shape=(n_samples,)
+        y_true : array_like_1d of shape=(n_samples,)
             True labels corresponding to samples.
 
-        y_pred : array_like of shape=(n_samples, n_predictions)
+        y_pred : array_like_2d of shape=(n_samples, n_predictions)
             Predicted labels for samples. Each column y_pred[:, i] indicates the
             i-th most likely prediction (0-indexed) for the given sample.
 
