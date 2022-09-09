@@ -105,7 +105,7 @@ for top, prediction in top_predictions(y_true, y_pred):
 ## API
 This library offers two main functions:
  * [top_classification_report()](#top_classification_report)
- * [top_predictions()](#top_classification_report)
+ * [top_predictions()](#top_predictions)
 
 ### top_classification_report()
 Create a classification report for a y_pred containing multiple top predictions. This function follows the same API as ``sklearn.metrics.classification_report`` with the exception that:
