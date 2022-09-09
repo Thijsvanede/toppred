@@ -2,18 +2,13 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-py-modules = [
-    "toppred"
-]
-
 [project]
 name = "toppred"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Thijs van Ede", email="t.s.vanede@utwente.nl" },
 ]
-description = "Extension to sklearn.metrics to allow metrics with multiple predictions"
+description = "Extension to sklearn.metrics to allow metrics with multiple predictions. "
 readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.8"
@@ -22,7 +17,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dynamic = ["dependencies"]
 
 [project.urls]
 "Homepage" = "https://github.com/Thijsvanede/toppred"
 "Bug Tracker" = "https://github.com/Thijsvanede/toppred/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
