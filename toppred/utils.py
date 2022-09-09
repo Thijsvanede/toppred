@@ -73,4 +73,4 @@ def reports2string(reports: List[dict], digits: int = 2) -> str:
     })
 
     # Return dataframe as string
-    return str(dataframe)
+    return f"\n{dataframe}\n"
