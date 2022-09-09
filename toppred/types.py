@@ -11,7 +11,6 @@ array_like_2d = Union[
 ]
 array_like = Union[
     array_like_1d,
-    array_like_2d,
     List["array_like"],
     Tuple["array_like"],
 ]
