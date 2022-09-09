@@ -44,7 +44,7 @@ def reports2string(reports: List[dict], digits: int = 2) -> str:
             for metric, value in performance.items():
 
                 # Set precision
-                if metric is not 'support':
+                if metric != 'support':
                     # Set MultiIndex
                     metric = (f"Top {top+1}", metric, '')
 
