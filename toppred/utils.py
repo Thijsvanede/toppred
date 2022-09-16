@@ -32,6 +32,9 @@ def reports2string(reports: List[dict], digits: int = 2) -> str:
 
         # Collect all labels and metrics in report
         for label, performance in report.items():
+            # Ignore non-dictionary performance metrics
+            if not isinstance(performance, dict): continue
+
             # Add space before micro avg
             if label == 'micro avg':
                 labels.append('')

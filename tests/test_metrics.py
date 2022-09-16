@@ -5,8 +5,28 @@ from toppred.metrics import top_classification_report
 class PredictionTest(unittest.TestCase):
     """Tests the functionality of the toppred.metrics module."""
 
-    def test_prediction(self):
-        """Test the correctness of normal predictions."""
+    def test_prediction_simple(self):
+        """Test the correctness of simple predictions."""
+        # Test case
+        y_true = np.asarray([1, 2, 3, 4, 5, 4, 3, 2, 1])
+        y_pred = np.asarray([
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+            [1, 2, 3],
+        ])
+
+        # Generate classification report
+        report = top_classification_report(y_true, y_pred)
+
+
+    def test_prediction_full(self):
+        """Test the correctness of full predictions."""
         # Test case
         y_true = np.asarray([1, 2, 3, 4, 5, 4, 3, 2, 1])
         y_pred = np.asarray([
