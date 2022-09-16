@@ -11,4 +11,4 @@ pip3 install toppred
 ```
 
 ## Documentation
-We provide an extensive documentation including installation instructions and reference at [toppred.readthedocs.io](toppred.readthedocs.io).
+We provide an extensive documentation including installation instructions and reference at [toppred.readthedocs.io](https://toppred.readthedocs.io).
