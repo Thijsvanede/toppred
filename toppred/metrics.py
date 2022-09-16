@@ -18,6 +18,7 @@ def top_classification_report(
     """Create a classification report for a y_pred containing multiple top
         predictions. This function follows the same API as
         ``sklearn.metrics.classification_report`` with the exception that:
+        
         1. ``y_pred`` should be given as a 2D array instead of a 1D array.
         2. If ``output_dict`` is ``True``, the output dictionary consists of a
         dictionary where ``key`` is 0-indexed top prediction and ``value`` is
