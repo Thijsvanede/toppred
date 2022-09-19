@@ -12,7 +12,8 @@
 #
 import sys
 import pathlib
-sys.path.insert(0, pathlib.Path(__file__).parent.parent.parent / 'toppred')
+sys.path.insert(0, str(pathlib.Path(__file__).absolute().parent.parent.parent / 'toppred'))
+print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
